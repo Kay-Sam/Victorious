@@ -145,20 +145,19 @@
 
 .menu .box-container .box .content .stars{
     padding-bottom: 1rem;
+    
 }
 
 .menu .box-container .box .content .stars i{
    font-size: 1.7rem;
    color:#333;
+   
+   
 }
 
-.menu .box-container .box .content h3{
-    color:var(--black);
-    font-size: 2.5rem;
-}
 
 .menu .box-container .box .content p{
-    color:var(--light-color);
+    color:#333;
     font-size: 1.6rem;
     padding:.5rem 0;
     line-height: 1.5;

@@ -771,6 +771,9 @@ section{
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: #fff;
 }
+#footer .footer-top .footer-info p a:hover {
+  color: #eb8342;
+}
 #footer .footer-top .social-links a {
   font-size: 18px;
   display: inline-block;
@@ -858,7 +861,7 @@ section{
   border-radius: 50px;
 }
 #footer .footer-top .footer-newsletter form input[type=submit]:hover {
-  background: #d08f1f;
+  background: #ba0c06;
 }
 #footer .copyright {
   text-align: center;
