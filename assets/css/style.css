@@ -401,7 +401,7 @@ section{
 
 .about .row .image img{
   width: 100%;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .about .row .content{
   flex:1 1 45rem;
@@ -1097,7 +1097,7 @@ reservation
 
 .floating{
 	position:fixed;
-	width:35px;
+	width:40px;
 	height:38px;
 	bottom:50px;
 	right:40px;
@@ -1111,6 +1111,7 @@ reservation
 }
 .floating:hover {
  color: rgb(255, 255, 255);
+ margin-bottom: 1px;
 }
 .float-button{
 	margin-top:16px;
