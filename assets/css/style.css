@@ -1,7 +1,12 @@
 :root{
-
-
+  --orange:#F79F1F;
+  --text-color-1:#444;
+  --text-color-2:#666;
+  --bg-color-1:#fff;
+  --bg-color-2:#eee;
+  --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.1);
 }
+
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
@@ -43,7 +48,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 0;
 }
 .back-to-top:hover {
-  background: #9c4510;
+  background: #fa7e31;
   color: #fff;
 }
 .back-to-top.active {
@@ -67,6 +72,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s;
   z-index: 997;
   padding: 20px 0;
+  
 }
 #header.header-scrolled {
   padding: 12px 0;
@@ -182,6 +188,8 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 15px;
   left: 15px;
   padding: 10px 0;
+  margin: 10px;
+  border-radius: 10px;
   background-color: #fff;
   overflow-y: auto;
   transition: 0.3s;
@@ -207,10 +215,11 @@ h1, h2, h3, h4, h5, h6 {
   background: url('../img/images\ \(6\).jpeg') no-repeat center center/cover;
   background-size: cover;
   position: relative;
+  text-align: center;
 }
 #hero:before {
   content: "";
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.432);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -218,7 +227,7 @@ h1, h2, h3, h4, h5, h6 {
   right: 0;
 }
 #hero h1 {
-  margin: 0;
+  margin: 30px auto;
   font-size: 40px;
   margin-top: 50px;
   font-weight: 700;
@@ -256,7 +265,7 @@ h1, h2, h3, h4, h5, h6 {
     padding-top: 58px;
   }
   #hero h1 {
-    font-size: 23px;
+    font-size: 30px;
   }
   #hero p {
     font-size: 12px;
@@ -392,7 +401,7 @@ section{
 
 .about .row .image img{
   width: 100%;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 .about .row .content{
   flex:1 1 45rem;
@@ -741,7 +750,7 @@ section{
 # Footer
 --------------------------------------------------------------*/
 #footer {
-  background: black;
+  background: rgb(255, 255, 255);
   padding: 0 0 30px 0;
   color: #fff;
   font-size: 14px;
@@ -861,11 +870,12 @@ section{
   border-radius: 50px;
 }
 #footer .footer-top .footer-newsletter form input[type=submit]:hover {
-  background: #ba0c06;
+  background: #fa7e31;
 }
 #footer .copyright {
   text-align: center;
   padding-top: 30px;
+  color: #333;
 }
 /* Products Start*/
 .features .box-container{
@@ -1095,8 +1105,7 @@ reservation
 	color:#FFF;
 	border-radius:50px;
 	text-align:center;
-       font-size:25px;
-	box-shadow: 2px 2px 3px rgb(213, 213, 213);
+  font-size:25px;
   z-index:100;
   
 }
@@ -1162,4 +1171,24 @@ reservation
 .banner-container .banner:hover img{
   transform:scale(1.2) rotate(-5deg);
 
+}
+
+/* Product banner */
+/* #product-banner {
+  width: 100%;
+  height: 65vh;
+  background: url('../img/h.jpg') no-repeat center center/cover;
+  background-size: cover;
+  position: relative;
+  text-align: center;
+}
+#product-banner:before
+{
+  content: '';
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #07070786;
+  position: absolute;
 }
