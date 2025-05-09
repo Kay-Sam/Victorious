@@ -105,3 +105,4 @@ window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
     // Initial render
     renderCart();
   });
+  
