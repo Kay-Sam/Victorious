@@ -8,10 +8,18 @@ body {
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-top: 120px
   }
   table {
     width: 100%;
   }
+
+
+.table-orange th{
+  background-color: var(--main-orange);
+  color: white;
+}
+
   th, td {
     text-align: center;
     vertical-align: middle;
@@ -24,7 +32,12 @@ body {
   .btn-danger {
     font-size: 14px;
     padding: 5px 10px;
+    background-color: rgb(225, 3, 3);
   }
+  .btn-danger:hover{
+    background-color: red;
+    border: none;
+  }    
   .checkout-btn {
     margin-top: 20px;
   }
@@ -59,6 +72,7 @@ body {
   
       .btn-orange:hover {
         background-color: #e65c00;
+        color: #fff;
       }
   
       .product-card {
@@ -113,3 +127,15 @@ body {
         text-decoration: none;
 
       }    
+
+      .product-suggestion-img {
+        height: 150px;
+        object-fit: cover;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+      }
+      
+      body {
+        padding-top: 20px; /* adjust based on navbar height */
+      }
+      

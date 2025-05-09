@@ -48,12 +48,17 @@
           <li><a class="nav-link scrollto" href="#reservation">Contact</a></li>
           <li> 
             <a href="checkout.html" class="cart-link">
-              <i class="bi bi-cart" style="font-size: 2rem; transition: all 0.3s;"></i> 
-              <span id="cart-count" class="cart-count">Cart</span>
+              <div class="d-flex align-items-center">
+                <span class="cart-text me-2">Cart</span> 
+                <i class="bi bi-cart me-2" style="font-size: 2rem; transition: all 0.3s;"></i>
+                <span id="cart-count" class="cart-count"></span>
+              </div>
             </a>
+          
           </li>
           
         </ul>
+
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
@@ -71,7 +76,7 @@
             
           </span> </h1>
         <p>Victorious Akara Chips is an indigenous homemade brand of bean chips — crunchy and tasty!</p>
-        <a href="#products" class="btn-get-started">Order Now</a>
+        <a href="shop.html" class="btn-get-started">Order Now</a>
       </div>
       <div class="image-side">
         <div class="clipped-image"></div>
@@ -95,7 +100,7 @@
              Looking for an Healthy chips for your refreshment? Look no further!</p>
 
       
-          <a href="#reservation" class="btn">Order Now</a>
+          <a href="shop.html" class="btn">Order Now</a>
       </div>
 
   </div>
@@ -234,7 +239,7 @@
           <h3>Special offer!</h3>
           <p>Discount For buying more than 10 Dozens</p>
           <p>15% Sale Off </p>
-          <a href="#reservation" class="btn1">Buy Now</a>
+          <a href="shop.html" class="btn1">Buy Now</a>
       </div>
   </div>
 
@@ -244,7 +249,7 @@
           <h3>Limited offer!</h3>
           <p>Discount For buying more than 20 Dozens</p>
           <p>10% Sale Off only </p>
-          <a href="#reservation" class="btn1">Buy Now</a>
+          <a href="shop.html" class="btn1">Buy Now</a>
       </div>
   </div>
 
@@ -317,7 +322,7 @@
                 <div class="left-text-content">
                     <div class="section-heading">
                       
-                        <h2>Here You Can Contact Us Directly OR Fill the Ordering Form.</h2>
+                        <h2>You Can Contact Us Directly OR Fill the Ordering Form.</h2>
                     </div>
                     <br> <br>
                    <div class="row">
@@ -332,7 +337,7 @@
                             <div class="message">
                                 <i class="bi bi-whatsapp"></i>
                                 <h4>Whatsapp</h4>
-                                <span><a href="https://wa.me/2347053088651" target="_blank">+2347053088651</a><br>
+                                <span><a href="https://wa.link/glqhxv" target="_blank">+2347053088651</a><br>
                             </div>  
                         </div>
                         
@@ -377,9 +382,9 @@
                           <fieldset>
                             <select value="type" name="type" id="type" required="">
                                 <option value="time">What type do you want?</option>
-                                <option name="chips" id="type A">Chip A</option>
-                                <option name="chips" id="type B">Chip B</option>
-                                <option name="chips" id="type B">Chis C</option>
+                                <option name="chips" id="type A">Jollof Style</option>
+                                <option name="chips" id="type B">Flat Style</option>
+                                <option name="chips" id="type B">Noodles Style</option>
                              
                             </select>
                           </fieldset>
@@ -440,8 +445,8 @@
           <ul>
             <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#products">Services</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#reservation">Order</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#products">Products</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="shop.html">Shop</a></li>
             
           </ul>
         </div>
@@ -462,7 +467,8 @@
         <div class="col-lg-4 col-md-6 footer-newsletter">
           <h4>Our Newsletter</h4>
           <p> Get exclusive offers and the latest Akara chip styles!</p>
-          <form name="contact" method="POST" data-netlify="true">
+          <!-- <form name="contact" method="POST" data-netlify="true"> -->
+          <form name="contact" method="POST" action="https://formsubmit.co/kayodesamuel2588@gmail.com">
             <input type="email" name="email"><input type="submit" value="Subscribe">
           </form>
 
