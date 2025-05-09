@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"/>
+  
+  <title>Add to Cart</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 60px;
+      padding: 20px;
+    }
+
+    .product {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      width: 220px;
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product h3 {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .product button {
+      padding: 8px 16px;
+      background-color: #c05d20;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .product button:hover {
+      background-color: #9b4518;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg shadow-sm px-4 py-3 bg-white">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a href="index.html" class="navbar-brand">
+      <img src="assets/img/logo.png" alt="Logo" height="50">
+    </a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links and Search -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropUP">
+      <ul class="navbar-nav align-items-center me-3">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html"> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="account.html"><i class="bi bi-person-circle"></i> Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="checkout.html">
+              <i class="bi bi-cart4"></i> Cart <span id="cart-count" class="badge bg-warning text-dark">0</span>
+            </a>
+          </li>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search">
+        <button class="btn btn-orange" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="add-to-cart.html">Shop</a>
+    <a href="add-to-cart.html" class="cart-link">
+      🛒 Cart (<span id="cart-count">0</span>)
+    </a>
+  </div>
+
+  <div class="products">
+    <div class="product">
+      <img src="img/item1.jpg" alt="Item 1">
+      <h3>Item 1</h3>
+      <button onclick="addToCart('Item 1')">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="img/item2.jpg" alt="Item 2">
+      <h3>Item 2</h3>
+      <button onclick="addToCart('Item 2')">Add to Cart</button>
+    </div>
+    <!-- Add more products as needed -->
+  </div>
+
+  <script>
+    function getCart() {
+      return JSON.parse(localStorage.getItem('cart')) || [];
+    }
+
+    function addToCart(itemName) {
+      const cart = getCart();
+      cart.push(itemName);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+    }
+
+    function updateCartCount() {
+      const cart = getCart();
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+
+    // Update count on page load
+    window.onload = updateCartCount;
+  </script>
+
+</body>
+</html>

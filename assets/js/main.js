@@ -40,7 +40,7 @@
    */
   let navbarlinks = select('#navbar .scrollto', true)
   const navbarlinksActive = () => {
-    let position = window.scrollY + 200
+    let position = window.scrollY + 0
     navbarlinks.forEach(navbarlink => {
       if (!navbarlink.hash) return
       let section = select(navbarlink.hash)
@@ -285,3 +285,176 @@
   });
 
 })()
+window.addEventListener('scroll', function () {
+  const header = document.getElementById('header');
+  if (window.scrollY > 100) {
+    header.classList.add('fixed');
+  } else {
+    header.classList.remove('fixed');
+  }
+});
+
+window.addEventListener('scroll', function () {
+  const floatBtn = document.querySelector('.floating');
+  const aboutSection = document.querySelector('.about');
+
+  const aboutTop = aboutSection.offsetTop;
+
+  if (window.scrollY >= aboutTop - 300) {
+    floatBtn.classList.add('show');
+  } else {
+    floatBtn.classList.remove('show');
+  }
+});
+
+function getCart() {
+  return JSON.parse(localStorage.getItem('cart')) || [];
+}
+
+function addToCart(itemName) {
+  const cart = getCart();
+  cart.push(itemName);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartCount(); // Update right after adding
+}
+
+function updateCartCount() {
+  const cart = getCart();
+  const count = cart.length;
+  const cartCountEl = document.getElementById('cart-count');
+  if (count > 0) {
+    cartCountEl.textContent = `Cart (${count})`;
+  } else {
+    cartCountEl.textContent = `Cart`;
+  }
+}
+
+// Run on every page load to show the current count
+window.onload = updateCartCount;
+
+function addToCart(product) {
+  // Example: Add product to cart
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.push(product);
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  // Show success message
+  alert("Product added to cart successfully!");
+
+  // Update cart count in the navbar
+  updateCartCount();
+}
+
+function updateCartCount() {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let cartCount = document.getElementById('cart-count');
+  cartCount.textContent = cart.length;
+}
+window.onload = function() {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  if (cart.length === 0) {
+      document.getElementById('cart-message').innerText = "Your cart is empty. Start shopping!";
+  } else {
+      document.getElementById('cart-message').innerText = "";
+  }
+};
+
+function getCart() {
+  return JSON.parse(localStorage.getItem('cart')) || [];
+}
+
+function saveCart(cart) {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function addToCart(name, price, image) {
+  const cart = getCart();
+  cart.push({ name, price, image });
+  saveCart(cart);
+  updateCartCount();
+  alert(`${name} added to cart!`);
+}
+
+function updateCartCount() {
+  const cart = getCart();
+  const count = cart.length;
+  const cartCountEl = document.getElementById('cart-count');
+  cartCountEl.textContent = `Cart (${count})`;
+}
+
+window.onload = updateCartCount;  // Update the cart count when the page loads
+
+// Function to add a product to the cart
+function addToCart(productName, productPrice, productImage) {
+  // Get the current cart from localStorage or create an empty one
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+  // Create a product object
+  const product = {
+      name: productName,
+      price: productPrice,
+      image: productImage
+  };
+
+  // Add the product to the cart
+  cart.push(product);
+
+  // Save the updated cart back to localStorage
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  // Update the cart count in the navbar
+  updateCartCount();
+}
+
+// Function to update the cart count in the navbar
+function updateCartCount() {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let cartCount = document.getElementById('cart-count');
+  cartCount.textContent = cart.length;  // Display the number of products in the cart
+}
+
+// Update the cart count when the page loads
+window.onload = updateCartCount;
+
+// Function to add product to cart
+function addToCart(name, price, image) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const existing = cart.find(item => item.name === name);
+
+  if (existing) {
+    existing.quantity = (existing.quantity || 1) + 1;
+  } else {
+    cart.push({ name, price, image, quantity: 1 });
+  }
+
+  // Save updated cart in localStorage
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  // Update cart count on the navbar
+  updateCartCount();
+
+  // Alert the user
+  alert(name + " added to cart!");
+}
+
+// Function to update the cart count in the navbar
+function updateCartCount() {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+  // Select the cart count element
+  let cartCountElement = document.getElementById('cart-count');
+
+  if (totalItems > 0) {
+    cartCountElement.textContent = totalItems;
+    cartCountElement.classList.remove('empty');
+  } else {
+    cartCountElement.textContent = "Cart";
+    cartCountElement.classList.add('empty');
+  }
+}
+
+// Update cart count on page load
+window.onload = function() {
+  updateCartCount();
+};

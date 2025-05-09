@@ -85,20 +85,20 @@
     font-size: 2.5rem;
 }
 
-.menu .box-container{
+.products .box-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap:1.5rem;
 }
 
-.menu .box-container .box{
+.products .box-container .box{
     background: #fff;
     border:.1rem solid rgba(0,0,0,.2);
     border-radius: .5rem;
     box-shadow: var(--box-shadow);    
 }
 
-.menu .box-container .box .image{
+.products .box-container .box .image{
     height: 25rem;
     width: 100%;
     padding:1.5rem;
@@ -107,7 +107,7 @@
   
 }
 
-.menu .box-container .box .image img{
+.products .box-container .box .image img{
     height: 100%;
     width: 100%;
     border-radius: .5rem;
@@ -115,10 +115,10 @@
     
 }
 
-.menu .box-container .box:hover .image img{ 
+.products .box-container .box:hover .image img{ 
     transform:scale(1.02);
 }
-.menu .box-container .box .image h3{
+.products .box-container .box .image h3{
     position: absolute;
     top:2.5rem; left:2.5rem;
     font-size: 2rem;
@@ -130,17 +130,17 @@
 }
 
 
-.menu .box-container .box .content{
+.products .box-container .box .content{
     padding:2rem;
     padding-top: 0;
 }
 
-.menu .box-container .box .content .stars{
+.products .box-container .box .content .stars{
     padding-bottom: 1rem;
     
 }
 
-.menu .box-container .box .content .stars i{
+.products .box-container .box .content .stars i{
    font-size: 1.7rem;
    color:#333;
    
@@ -148,21 +148,21 @@
 }
 
 
-.menu .box-container .box .content p{
+.products .box-container .box .content p{
     color:#333;
     font-size: 1.6rem;
     padding:.5rem 0;
     line-height: 1.5;
 }
 
-.menu .box-container .box .content .price{
+.products .box-container .box .content .price{
     font-weight: 600;
     color:#333;
     font-size: 2.5rem;
 
 }
 
-.menu .box-container .box .content  .price span{
+.products .box-container .box .content  .price span{
     font-weight: lighter;
     color:var(--text-color-2);
     font-size: 1.5rem;

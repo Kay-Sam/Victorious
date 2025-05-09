@@ -33,6 +33,7 @@
 
 
 <body>
+  
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
@@ -43,9 +44,15 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a href="product.html">Products</a></li>
+          <li><a class="nav-link scrollto" href="shop.html">Shop</a></li>
           <li><a class="nav-link scrollto" href="#reservation">Contact</a></li>
+          <li> 
+            <a href="checkout.html" class="cart-link">
+              <i class="bi bi-cart" style="font-size: 2rem; transition: all 0.3s;"></i> 
+              <span id="cart-count" class="cart-count">Cart</span>
+            </a>
+          </li>
+          
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -55,25 +62,28 @@
  
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
-
-    <div class="container" data-aos="fade-up">
-      <div class="row">
-        <div class="col-center">
-          <h1>  THE PERFECT CHIPS FOR YOUR REFRESHMENT</h1>
-          <p> Victorious Akara Chips is an Indigenous Homemade Bean Chips, Crunchy and Tasty.</p>
-          <a href="#reservation" class="btn-get-started scrollto">Buy Now</a>
-        </div>
+    <div class="decorative-circle"></div> <!-- large background circle -->
+    <div class="container hero-container">
+      <div class="text-side">
+        <h1>THE PERFECT CHIPS
+         FOR YOUR  <span class="decorated-text">
+            <img src="assets/img/brushn.png" alt="underline" class="underline-image">REFRESHMENT
+            
+          </span> </h1>
+        <p>Victorious Akara Chips is an indigenous homemade brand of bean chips — crunchy and tasty!</p>
+        <a href="#products" class="btn-get-started">Order Now</a>
+      </div>
+      <div class="image-side">
+        <div class="clipped-image"></div>
       </div>
     </div>
+  </section>
 
-  </section><!-- End Hero -->
-  
+  <!-- About section -->
   <section class="about" id="about">
 
     <h1 class="heading"> <span>About</span> Us </h1>
-
     <div class="row">
-
         <div class="image">
             <img src="assets/img/Akara Chips.jpg" alt="" data-aos="fade-right">
         </div>
@@ -82,10 +92,10 @@
           <h3>What Makes Our Akara Chips Special? </h3>
  <p>  <b>Victorious' Akara Chips</b> is a brand that makes a very tasty and crunchy Akara Chips which is rich in protein & Vitamin A.
              Each Akara Chips is made from well picked and cleaned beans and fried with a food technology process that locks the nutrients in the finished Akara Chips before it is hygenically packed.
-             Looking for an Healthy chips for your refreshment? Here it is!          </p>
+             Looking for an Healthy chips for your refreshment? Look no further!</p>
 
       
-          <a href="#reservation" class="btn">  Buy Now</a>
+          <a href="#reservation" class="btn">Order Now</a>
       </div>
 
   </div>
@@ -104,23 +114,23 @@
 
       <div class="box">
           <img src="assets/img/Vic.png" alt="">
-          <h3>Fully Packed</h3>
+          <h3>Freshly Packed</h3>
           <p>Victorious Akara Chips are fully packed for your proper consumption. </p>
-          <a href="#reservation" class="btn">Buy Now</a>
+          <a href="#products" class="btn">View Product</a>
       </div>
 
       <div class="box">
           <img src="assets/img/feature-img-2.png" alt="">
           <h3>Fast Delivery</h3>
           <p>We deliver your orders fast, in as much you give the quantity you want to buy.</p>
-          <a href="#reservation" class="btn">Buy Now</a>
+          <a href="#products" class="btn">View Product</a>
       </div>
 
       <div class="box">
           <img src="assets/img/feature-img.png" alt="">
           <h3>Easy Payment</h3>
           <p>You can make your payment directly or pay on delivery.</p>
-          <a href="#reservation" class="btn">Buy Now</a>
+          <a href="#products" class="btn">View Product</a>
       </div>
 
   </div>
@@ -128,7 +138,7 @@
 </section>
 <!-- menu section starts  -->
 <!-- Product start -->
-<section class="menu" id="products" data-aos="fade-up">
+<section class="products" id="products" data-aos="fade-up">
 
 
   <h1 class="heading"> <span>Our</span> Products </h1>
@@ -137,8 +147,8 @@
 
       <div class="box">
           <div class="image">
-              <img src="assets/img/IMG_20221016_154939_1nj.jpg" alt="">
-              <h3> <i class="bi bi-cart"></i> Chip A </h3>        
+              <img src="assets/img/product1.jpg" alt="">
+              <h3> <i class="bi bi-cart"></i> Jollof Style </h3>        
           </div>
        
           <div class="content">
@@ -149,18 +159,22 @@
                 <i class="bi bi-star-fill"></i>
                   <i class="bi bi-star-half"></i>
                 </div>
-              <div class="price"> #50.00  </div>
+              <div class="price"> #500.00  </div>
 
               <p>Looking for that crunchy chips to brighten your day? .</p>
-              <a href="#reservation" class="btn1">Buy Now</a>
+              <!-- <a href="#reservation" class="btn1">Add to Cart</a> -->
+              <!-- <button class="btn1" onclick="addToCart('Jollof Style', 500, 'assets/img/IMG_20221016_154939_1nj.jpg')">Add to Cart</button> -->
+              <a href="javascript:void(0);" class="btn1" onclick="addToCart('Jollof Style', 500, 'assets/img/product1.jpg')">Add to Cart</a>
+     
+          
              
           </div>
       </div>
 
       <div class="box">
           <div class="image">
-              <img src="assets/img/images d.jpeg" alt="">
-              <h3> <i class="bi bi-cart"></i> Chip B </h3>        
+              <img src="assets/img/product2.jpeg" alt="">
+              <h3> <i class="bi bi-cart"></i> Flat Style </h3>        
               
           </div>
           <div class="content">
@@ -172,18 +186,21 @@
                 <i class="bi bi-star-half"></i>
               </div>
     
-              <div class="price"> #50.00 </div>
+              <div class="price"> #500.00 </div>
    
               <p>Taking Victorious' Akara Chips with Pap is worth trying.</p>
-              <a href="#reservation" class="btn1">Buy Now</a>
+              <a href="javascript:void(0);" class="btn1" onclick="addToCart('Flat Style', 500, 'assets/img/product2.jpeg')">Add to Cart</a>
+    
+              <!-- <button class="btn1" onclick="addToCart('Flat Style', 500, 'assets/img/images d.jpeg')">Add to Cart</button> -->
+       
              
           </div>
       </div>
 
       <div class="box">
           <div class="image">
-              <img src="assets/img/v.jpg" alt="">
-              <h3> <i class="bi bi-cart"></i> Chip C </h3>        
+              <img src="assets/img/product3.jpg" alt="">
+              <h3> <i class="bi bi-cart"></i> Noodles Style</h3>        
               
           </div>
           <div class="content">
@@ -194,9 +211,12 @@
               <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-half"></i>
               </div>
-              <div class="price"> #50.00  </div>
+              <div class="price"> #500.00  </div>
               <p>Feel the crispiness. The taste that makes you want more.</p>
-              <a href="#reservation" class="btn1">Buy Now</a>
+              <a href="javascript:void(0);" class="btn1" onclick="addToCart('Noodles Style', 500, 'assets/img/product3.jpg')">Add to Cart</a>
+    
+              <!-- <button class="btn1" onclick="addToCart('Noodles Style', 500, 'assets/img/v.jpg')">Add to Cart</button>
+         -->
              
           </div>
       </div>
@@ -232,7 +252,7 @@
 <!-- menu section ends -->
 <!-- ======= Testimonials Section ======= -->
 <div class="section-title">
-  <h2>Testimonials</h2>
+  <h2>Customers Reviews</h2>
   <p> What our customers have to say. </p>
 </div>
 
@@ -244,8 +264,6 @@
 
         <div class="swiper-slide">
           <div class="testimonial-item">
-            
-            <img src="assets/img/pic3.jpg" class="testimonial-img" alt="">
             <h3>Sammy</h3>
             <p>
               <i class="bx bxs-quote-alt-left quote-icon-left"></i>
@@ -257,9 +275,7 @@
 
         <div class="swiper-slide">
           <div class="testimonial-item">
-            <img src="assets/img/photo-1564648351416-3eec9f3e85de.jpg" class="testimonial-img" alt="">
             <h3>  Mercy </h3>
-    
             <p>
               <i class="bx bxs-quote-alt-left quote-icon-left"></i>
               
@@ -271,7 +287,6 @@
 
         <div class="swiper-slide">
           <div class="testimonial-item">
-            <img src="assets/img/S.png" class="testimonial-img" alt="">
             <h3>Olive</h3>
    
             <p>
@@ -446,7 +461,7 @@
 
         <div class="col-lg-4 col-md-6 footer-newsletter">
           <h4>Our Newsletter</h4>
-          <p> Join our newsletter as we give you more information about healthy chips that are suitable for you.</p>
+          <p> Get exclusive offers and the latest Akara chip styles!</p>
           <form name="contact" method="POST" data-netlify="true">
             <input type="email" name="email"><input type="submit" value="Subscribe">
           </form>
@@ -459,7 +474,7 @@
 
   <div class="container">
     <div class="copyright">
-    <p>&copy; Copyright <script>document.write(new Date ().getFullYear())</script> Victorious. All rights reserved.</p>
+    <p>&copy; Copyright <script>document.write(new Date ().getFullYear())</script> Victorious Akara Chips. All rights reserved.</p>
     </div>
 
   </div>
