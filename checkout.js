@@ -72,6 +72,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         }
-    });
+   
+
+    
+    // Function to generate WhatsApp order message
+    function generateWhatsAppMessage(cartItems) {
+        let message = "Order Details:\n\n";
+        let totalAmount = 0;
+
+        cartItems.forEach((item) => {
+            const quantity = item.quantity || 1;
+            const itemTotal = item.price * quantity;
+            totalAmount += itemTotal;
+
+            message += `${item.name} - ${quantity} x $${item.price.toFixed(2)} = $${itemTotal.toFixed(2)}\n`;
+        });
+
+        message += `\nTotal: $${totalAmount.toFixed(2)}\n\nPlease proceed with payment.`;
+        return message;
+    }
+ });
 
 
