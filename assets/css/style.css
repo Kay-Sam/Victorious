@@ -234,6 +234,73 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-mobile .getstarted, .navbar-mobile .getstarted:focus {
   margin: 15px;
 }
+/* Make cart icon appear larger */
+.cart-link i.bi-cart4 {
+  font-size: 4.5rem; /* Set a larger size for the cart icon */
+  position: relative; /* Ensure it's positioned correctly */
+}
+
+/* Cart text styling */
+.cart-text {
+  font-size: 1.2rem; /* Make the "Cart" text a little bigger */
+  font-weight: 600;
+  color: #111;
+  margin-right: 10px;
+}
+
+/* Cart count styling */
+.cart-count {
+  position: absolute;
+  top: -5px; /* Adjust the top position */
+  right: -5px; /* Adjust the right position */
+  font-size: 12px; /* Cart count size */
+  background-color: #c05d20; /* Background color for the count */
+  color: #fff; /* White text */
+  border-radius: 50%; /* Circular count bubble */
+  padding: 3px 6px; /* Padding around the count */
+}
+
+/* Adjust for mobile responsiveness */
+@media (max-width: 991px) {
+  .cart-link {
+    position: relative;
+    margin-right: 10px;
+  }
+
+  .cart-link i.bi-cart4 {
+    font-size: 3rem; /* Keep the cart icon large on mobile */
+    margin-right: 10px; /* Space between cart icon and "Cart" text */
+  }
+
+  .cart-link .cart-text {
+    font-size: 1.2rem; /* "Cart" text size */
+    font-weight: 600;
+    color: #111;
+  }
+
+  .cart-link .cart-count {
+    top: -5px;
+    right: -5px;
+    font-size: 12px;
+    background-color: #f0ab0b;
+    color: #fff;
+    border-radius: 50%;
+    padding: 3px 6px;
+  }
+}
+
+/* Default (not mobile menu) – no extra margin */
+.cart-link {
+  margin-left: 0;
+}
+
+/* When mobile nav is active (hamburger clicked) */
+.navbar-mobile .cart-link {
+  display: flex;
+  margin-left: 25px; /* Adjust spacing inside the hamburger menu */
+  margin-top: -85px;   /* Optional: spacing from nav items */
+}
+
 /* animation */
 @keyframes fadeInRight {
   from {
