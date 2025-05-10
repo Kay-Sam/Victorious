@@ -177,3 +177,28 @@ footer a {
 .btn-orange:hover {
   background-color: #e65100;
 }
+.table-responsive {
+  overflow-x: auto;
+  width: 100%;
+}
+/* Make table scrollable on smaller screens */
+.cart-container {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 600px; /* Ensures table doesn't break on small screens */
+}
+@media (max-width: 576px) {
+  table th,
+  table td {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  .cart-container {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
