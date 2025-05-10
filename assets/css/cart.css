@@ -184,21 +184,25 @@ footer a {
 /* Make table scrollable on smaller screens */
 .cart-container {
   overflow-x: auto;
-}
+} 
 
 .table {
   width: 100%;
-  min-width: 600px; /* Ensures table doesn't break on small screens */
+  min-width: 600px; 
+} 
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
 }
-@media (max-width: 576px) {
-  table th,
-  table td {
-    font-size: 14px;
-    padding: 6px;
-  }
 
-  .cart-container {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
+.table-responsive table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* Optional: adjust this for layout */
+}
+
+table th, table td {
+  padding: 10px;
+  text-align: left;
+  white-space: nowrap;
 }
