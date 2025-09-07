@@ -80,3 +80,34 @@ window.addEventListener('scroll', function () {
       floatBtn.classList.remove('show');
     }
   });
+
+  // search functionality
+
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('search-input');
+  const productList = document.getElementById('product-list');
+  const products = productList.getElementsByClassName('col-md-4');
+
+  searchInput.addEventListener('keyup', function() {
+    const searchText = this.value.toLowerCase();
+
+    for (let i = 0; i < products.length; i++) {
+      const productTitle = products[i].querySelector('.product-title').textContent.toLowerCase();
+      const productDesc = products[i].querySelector('p').textContent.toLowerCase();
+
+      if (productTitle.includes(searchText) || productDesc.includes(searchText)) {
+        products[i].style.display = '';
+      } else {
+        products[i].style.display = 'none';
+      }
+    }
+  });
+});
+
+// Handle modal image click
+document.querySelectorAll('.clickable-img').forEach(img => {
+  img.addEventListener('click', function() {
+    const fullImage = this.getAttribute('data-img-src');
+    document.getElementById('modalImage').src = fullImage;
+  });
+});

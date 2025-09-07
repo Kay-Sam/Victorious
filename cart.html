@@ -42,89 +42,246 @@
           </a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search">
-        <button class="btn btn-orange" type="submit"><i class="bi bi-search"></i></button>
-      </form>
+    <form class="d-flex" role="search" onsubmit="return false;">
+      <input id="search-input" class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search">
+      <button class="btn btn-orange" type="submit"><i class="bi bi-search"></i></button>
+    </form>
+
     </div>
   </div>
 </nav>
 
 <div class="container py-5 mt-5">
   <div class="row">
-      <!-- Cart Section -->
-      <div class="col-lg-8 cart-container mt-5">
-          <h3 class="mb-4">🛒 Your Cart</h3>
-          <div class="table-responsive">
-          <table class="table table-bordered align-middle table-orange">
-              <thead>
-                  <tr>
-                      <th>Product</th>
-                      <th>Price</th>
-                      <th style="width: 150px;">Quantity</th>
-                      <th>Total</th>
-                      <th>Remove</th>
-                  </tr>
-              </thead>
-              <tbody id="cart-items">
-                  <!-- JS inserts rows here -->
-              </tbody>
-          </table>
+    <!-- LEFT SIDE (Cart + Suggested Products Under Table) -->
+    <div class="col-lg-8 cart-container mt-5">
+    <h3 class="mb-4 d-flex align-items-center">
+  <i class="bi bi-cart3  me-2"></i> Your Cart
+</h3>
+
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle table-orange">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th style="width: 150px;">Quantity</th>
+              <th>Total</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody id="cart-items">
+            <!-- JS inserts rows here -->
+          </tbody>
+        </table>
+      </div>
+      <p class="text-muted d-block d-sm-none">Swipe left/right to view more</p>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h5>Total: ₦<span id="total-amount">0.00</span></h5>
+        <button id="proceed-btn" class="btn btn-orange">Proceed to Checkout</button>
+      </div>
+
+      <!-- 🔥 Suggested Products under table -->
+      <div class="mt-5">
+        <h5 class="mb-3">You Might Also Like</h5>
+        <div class="row">
+          <!-- Product 1 -->
+          <div class="col-md-6 mb-3">
+            <div class="card shadow-sm border-0">
+              <img src="assets/img/chinchin3.jpg"
+                   class="card-img-top product-suggestion-img clickable-img"
+                   alt="Chin Chin 1"
+                   data-bs-toggle="modal"
+                   data-bs-target="#imageModal"
+                   data-img-src="assets/img/chinchin3.jpg">
+              <div class="card-body text-center">
+                <div class="product-title">Chin Chin Classic</div>
+                <div class="star-rating mb-2">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-half"></i>
+                </div>
+                <div class="product-price mb-2">₦500.00</div>
+                <p>Crispy, sweet, and made with a simple traditional recipe you’ll love every day..</p>
+                <button class="btn btn-orange w-100"
+                        onclick="handleAddToCart('Chin Chin Classic', 500, 'assets/img/chinchin3.jpg')">
+                  <i class="bi bi-cart-plus"></i> Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+                    <!-- Product 2 -->
+          <div class="col-md-6 mb-3">
+            <div class="card shadow-sm border-0">
+              <img src="assets/img/plantain2.jpg"
+                   class="card-img-top product-suggestion-img clickable-img"
+                   alt="Plantain 1"
+                   data-bs-toggle="modal"
+                   data-bs-target="#imageModal"
+                   data-img-src="assets/img/plantain2.jpg">
+              <div class="card-body text-center">
+                <div class="product-title">Sweet Bliss Plantain Chips</div>
+                <div class="star-rating mb-2">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-half"></i>
+                </div>
+                <div class="product-price mb-2">₦500.00</div>
+                <p>Naturally sweet, thinly sliced plantains that melt in your mouth with every bite.</p>
+                <button class="btn btn-orange w-100"
+                        onclick="handleAddToCart('Plantain Chips Classic', 500, 'assets/img/plantain2.jpg')">
+                  <i class="bi bi-cart-plus"></i> Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+                    <!-- Product 3 -->
+          <div class="col-md-6 mb-3">
+            <div class="card shadow-sm border-0">
+              <img src="assets/img/plantain1.jpg"
+                   class="card-img-top product-suggestion-img clickable-img"
+                   alt="Plantain1"
+                   data-bs-toggle="modal"
+                   data-bs-target="#imageModal"
+                   data-img-src="assets/img/plantain1.jpg">
+              <div class="card-body text-center">
+                <div class="product-title">Plantain Chip Bottle Pack</div>
+                <div class="star-rating mb-2">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-half"></i>
+                </div>
+                <div class="product-price mb-2">₦1000.00</div>
+                <p>Crispy plantain chips sealed in a stylish, for sharing or snacking anywhere!</p>
+                <button class="btn btn-orange w-100"
+                        onclick="handleAddToCart('Plantain Chip Bottle Pack', 1000, 'assets/img/plantain1.jpg')">
+                  <i class="bi bi-cart-plus"></i> Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="col-md-6 mb-3">
+            <div class="card shadow-sm border-0">
+              <img src="assets/img/chinchin2.jpg"
+                   class="card-img-top product-suggestion-img clickable-img"
+                   alt="Chin Chin 2"
+                   data-bs-toggle="modal"
+                   data-bs-target="#imageModal"
+                   data-img-src="assets/img/chinchin2.jpg">
+              <div class="card-body text-center">
+                <div class="product-title">Chin Chin Deluxe</div>
+                <div class="star-rating mb-2">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star"></i>
+                </div>
+                <div class="product-price mb-2">₦700.00</div>
+                <p>A richer taste for true Chin Chin lovers—crunchy outside, soft inside!</p>
+                <button class="btn btn-orange w-100"
+                        onclick="handleAddToCart('Chin Chin Deluxe', 700, 'assets/img/chinchin2.jpg')">
+                  <i class="bi bi-cart-plus"></i> Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+  <a href="shop.html" class="btn btn-outline-orange">
+    <i class="bi bi-bag-plus me-2"></i> Browse More Products
+  </a>
 </div>
-<p class="text-muted d-block d-sm-none">Swipe left/right to view more</p>
 
-          <div class="d-flex justify-content-between align-items-center">
-              <h5>Total: ₦<span id="total-amount">0.00</span></h5>
-              <button id="proceed-btn" class="btn btn-orange">Proceed to Checkout</button>
-          </div>
-      </div>
 
-      <!-- Suggested Products -->
-      <div class="col-lg-4" style="margin-top: 0.5rem;">
-          <h5 class="mb-3">More Products</h5>
-          <div class="card mb-3 shadow-sm border-0">
-              <img src="assets/img/product1.jpg" class="card-img-top product-suggestion-img" alt="Product 1">
-              <div class="card-body text-center">
-                  <div class="product-body">
-                      <div class="product-title">Victorious Special</div>
-                      <div class="star-rating mb-2">
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-half"></i>
-                      </div>
-                      <div class="product-price mb-2">₦500.00</div>
-                      <p>Feel the crispiness. The taste that makes you want more.</p>
-                      <button class="btn btn-orange w-100" onclick="handleAddToCart('Noodles Style', 500, 'assets/img/product3.jpg')">
-                          <i class="bi bi-cart-plus"></i> Add to Cart
-                      </button>
-                  </div>
-              </div>
-          </div>
-          <div class="card mb-3 shadow-sm border-0">
-              <img src="assets/img/product3.jpg" class="card-img-top product-suggestion-img" alt="Product 2">
-              <div class="card-body text-center">
-                  <div class="product-body">
-                      <div class="product-title">Family Pack</div>
-                      <div class="star-rating mb-2">
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-half"></i>
-                      </div>
-                      <div class="product-price mb-2">₦500.00</div>
-                      <p>Looking for that crunchy chips to brighten your day?</p>
-                      <button class="btn btn-orange w-100" onclick="handleAddToCart('Jollof Style', 500, 'assets/img/product1.jpg')">
-                          <i class="bi bi-cart-plus"></i> Add to Cart
-                      </button>
-                  </div>
-              </div>
-          </div>
+      <!-- Bootstrap Modal -->
+<!-- 🔥 Bootstrap Modal for Full Image -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Product Image</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <div class="modal-body text-center">
+        <img id="modalImage" src="" class="img-fluid rounded shadow" alt="Product Image">
+      </div>
+    </div>
   </div>
 </div>
+</div>
+
+
+    <!-- RIGHT SIDE (More Products Sidebar) -->
+    <div class="col-lg-4" style="margin-top: 0.5rem;">
+      <h5 class="mb-3">More Products</h5>
+
+      <div class="card mb-3 shadow-sm border-0">
+       <img src="assets/img/product1.jpg" 
+     class="card-img-top product-suggestion-img clickable-img" 
+     alt="Product 1"
+     data-bs-toggle="modal" 
+     data-bs-target="#imageModal"
+     data-img-src="assets/img/product1.jpg">
+
+        <div class="card-body text-center">
+          <div class="product-body">
+            <div class="product-title">Victorious Special</div>
+            <div class="star-rating mb-2">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-half"></i>
+            </div>
+            <div class="product-price mb-2">₦500.00</div>
+            <p>Feel the crispiness. The taste that makes you want more.</p>
+            <button class="btn btn-orange w-100" onclick="handleAddToCart('Akara Chips Noodles Style', 500, 'assets/img/product3.jpg')">
+              <i class="bi bi-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-3 shadow-sm border-0">
+       <img src="assets/img/product3.jpg" 
+     class="card-img-top product-suggestion-img clickable-img" 
+     alt="Product 2"
+     data-bs-toggle="modal" 
+     data-bs-target="#imageModal"
+     data-img-src="assets/img/product3.jpg">
+
+        <div class="card-body text-center">
+          <div class="product-body">
+            <div class="product-title">Family Pack</div>
+            <div class="star-rating mb-2">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-half"></i>
+            </div>
+            <div class="product-price mb-2">₦500.00</div>
+            <p>Looking for that crunchy chips to brighten your day?</p>
+            <button class="btn btn-orange w-100" onclick="handleAddToCart('Akara Chips Jollof Style', 500, 'assets/img/product1.jpg')">
+              <i class="bi bi-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Footer -->
@@ -140,12 +297,12 @@
               Orita Odan Eleekan <br>
               Olodo, Ibadan<br><br>
               <i class="bi bi-phone"></i><a href="tel:+2348060886466"> 08060886466</a> <br>
-               <i class="bi bi-envelope"></i><a href="mailto:victoriadada.v@gmail.com"> Victoriadada.v@gmail.com </a><br>
+               <i class="bi bi-envelope"></i><a href="mailto:vicaderonkedada@gmail.com"> vicaderonkedada@gmail.com</a><br>
             </p>
             <div class="social-links mt-3">
               <a href="https://www.facebook.com/victoria.dada.39904" class="facebook" target="_blank"><i class="bi bi-facebook"></i></a>
               <a href="https://www.instagram.com/victoria_aderonke_dada?igshid=Yzg5MTU1MDY=" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
-              <a href="https://wa.me/2347053088651" class="whatsapp" target="_blank"><i class="bi bi-whatsapp"></i></a>
+              <a href="https://api.whatsapp.com/send?phone=2348060886466" class="whatsapp" target="_blank"><i class="bi bi-whatsapp"></i></a>
             
             </div>
           </div>
@@ -154,7 +311,7 @@
         <div class="col-lg-2 col-md-6 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html">Home</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#products">Products</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="shop.html">Shop</a></li>
@@ -179,7 +336,7 @@
           <h4>Our Newsletter</h4>
           <p> Get exclusive offers and the latest Akara chip styles!</p>
           <!-- <form name="contact" method="POST" data-netlify="true"> -->
-          <form name="contact" method="POST" action="https://formsubmit.co/kayodesamuel2588@gmail.com">
+          <form name="contact" method="POST" action="https://formsubmit.co/vicaderonkedada@gmail.com">
             <input type="email" name="email"><input type="submit" value="Subscribe">
           </form>
 
@@ -196,7 +353,7 @@
 
   </div>
 </footer><!-- End Footer -->
-  <a href="https://wa.link/glqhxv" class="floating" target="_blank">
+  <a href="https://wa.me/2348060886466?text=Hello%20there!%0AI'm%20interested%20in%20your%20service.%0ACan%20you%20send%20me%20the%20price%20list%3F%20" class="floating" target="_blank">
     <i class="bi bi-whatsapp float-button"></i>
   </a>
   
@@ -206,6 +363,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+    <script src="assets/js/search.js"></script>
   <script src="assets/js/cart.js"></script>
 
 </body>

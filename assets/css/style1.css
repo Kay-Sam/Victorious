@@ -251,3 +251,55 @@
     }
 
 }
+
+/* Stats Section */
+.stats {
+  background: #fff;
+  font-family: 'Poppins', sans-serif;
+  padding: 60px 0; /* Add breathing space */
+}
+
+.stat-box {
+  background: #fff; /* Light & modern */
+  padding: 25px 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Better Font for Numbers */
+.stat-number {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #da5c08; /* Make numbers pop */
+}
+
+.stat-box p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #555; /* Softer text */
+}
+
+/* Style the star rating separately */
+.rating-star {
+  font-size: 2rem;
+  color: #da5c08;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.text-orange {
+  color: #da5c08;
+}
+
+.stats p {
+  font-size: 1rem;
+  color: #777;
+  margin-top: 5px;
+}

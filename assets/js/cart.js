@@ -7,35 +7,41 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartCountElement = document.getElementById("cart-count");
   const proceedButton = document.getElementById("proceed-btn");
 
-  function renderCart() {
-    cartContainer.innerHTML = "";
-    let total = 0;
+function renderCart() {
+  cartContainer.innerHTML = "";
+  let total = 0;
 
-    cart.forEach((item, index) => {
-      const quantity = item.quantity || 1;
-      const itemTotal = item.price * quantity;
-      total += itemTotal;
+  cart.forEach((item, index) => {
+    const quantity = item.quantity || 1;
+    const itemTotal = item.price * quantity;
+    total += itemTotal;
 
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${item.name}</td>
-        <td>₦${item.price.toFixed(2)}</td>
-        <td>
-          <button class="btn btn-secondary decrease" data-index="${index}">-</button>
-          <span class="mx-2">${quantity}</span>
-          <button class="btn btn-secondary increase" data-index="${index}">+</button>
-        </td>
-        <td>₦${itemTotal.toFixed(2)}</td>
-        <td><button class="btn btn-danger delete" data-index="${index}">Delete</button></td>
-      `;
-      cartContainer.appendChild(row);
-    });
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>
+        <div class="d-flex align-items-center">
+          <img src="${item.image}" alt="${item.name}" class="cart-img me-2">
+          <span>${item.name}</span>
+        </div>
+      </td>
+      <td>₦${item.price.toFixed(2)}</td>
+      <td>
+        <button class="btn btn-secondary decrease" data-index="${index}">-</button>
+        <span class="mx-2">${quantity}</span>
+        <button class="btn btn-secondary increase" data-index="${index}">+</button>
+      </td>
+      <td>₦${itemTotal.toFixed(2)}</td>
+      <td><button class="btn btn-danger delete" data-index="${index}">Delete</button></td>
+    `;
+    cartContainer.appendChild(row);
+  });
 
-    totalDisplay.textContent = total.toFixed(2);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartCount();
-    attachEvents();
-  }
+  totalDisplay.textContent = total.toFixed(2);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+  attachEvents();
+}
+
 
   function updateCartCount() {
     const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
@@ -79,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const phoneNumber = "2349079459440"; 
+      const phoneNumber = "2348060886466"; 
       let message = "Hello! I'd like to place an order:\n\n";
       cart.forEach((item, index) => {
         const quantity = item.quantity || 1;
