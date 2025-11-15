@@ -428,6 +428,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-get-started {
+  display: inline-block;
   padding: 10px 20px;
   background-color: #9f4811;
   color: white;
@@ -435,12 +436,26 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   transition: 0.3s ease;
   font-size: 20px;
+
+  /* Infinite shake animation */
+  animation: ctaShake 0.9s ease-in-out infinite;
 }
 
 .btn-get-started:hover {
   background-color: #883204;
   color: #fff;
 }
+
+/* Shake keyframes */
+@keyframes ctaShake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+  100% { transform: translateX(0); }
+}
+
 
 /* right side */
 .image-side {
