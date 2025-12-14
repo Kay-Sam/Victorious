@@ -95,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 968px) {
    #header .logo img {
     max-height: 40px;
-    margin-top: 0%;
+    margin-top: -15%;
 }
  
   }
@@ -1460,4 +1460,18 @@ reservation
 /* Optional: Adding hover effect */
 .cart-link:hover {
   color: #ff6f00;
+}
+
+/* Floating Santa */
+.floating-santa {
+  position: absolute;
+  width: 80px;
+  bottom: 10px;
+  right: 10px;
+  animation: floatSanta 3s ease-in-out infinite;
+}
+
+@keyframes floatSanta {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
 }

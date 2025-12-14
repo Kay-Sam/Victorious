@@ -1,163 +1,152 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   const cartContainer = document.getElementById("cart-items");
   const totalDisplay = document.getElementById("total-amount");
   const cartCountElement = document.getElementById("cart-count");
+  let promoMessageContainer = document.getElementById("promo-message");
   const proceedButton = document.getElementById("proceed-btn");
 
-function renderCart() {
-  cartContainer.innerHTML = "";
-  let total = 0;
-
-  cart.forEach((item, index) => {
-    const quantity = item.quantity || 1;
-    const itemTotal = item.price * quantity;
-    total += itemTotal;
-
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>
-        <div class="d-flex align-items-center">
-          <img src="${item.image}" alt="${item.name}" class="cart-img me-2">
-          <span>${item.name}</span>
-        </div>
-      </td>
-      <td>₦${item.price.toFixed(2)}</td>
-      <td>
-        <button class="btn btn-secondary decrease" data-index="${index}">-</button>
-        <span class="mx-2">${quantity}</span>
-        <button class="btn btn-secondary increase" data-index="${index}">+</button>
-      </td>
-      <td>₦${itemTotal.toFixed(2)}</td>
-      <td><button class="btn btn-danger delete" data-index="${index}">Delete</button></td>
-    `;
-    cartContainer.appendChild(row);
-  });
-
-  totalDisplay.textContent = total.toFixed(2);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  updateCartCount();
-  attachEvents();
-}
-
-
-  function updateCartCount() {
-    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-    if (cartCountElement) {
-      cartCountElement.textContent = totalItems;
+  // --------------------- HANDLE ADD TO CART ---------------------
+  window.handleAddToCart = function(name, price, image) {
+    const existing = cart.find(item => item.name === name);
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({ name, price, image, quantity: 1 });
     }
-  }
+    saveAndRender();
+  };
 
-  function attachEvents() {
-    document.querySelectorAll(".increase").forEach(btn => {
-      btn.addEventListener("click", e => {
-        const i = parseInt(e.target.dataset.index);
-        cart[i].quantity = (cart[i].quantity || 1) + 1;
-        renderCart();
-      });
-    });
-
-    document.querySelectorAll(".decrease").forEach(btn => {
-      btn.addEventListener("click", e => {
-        const i = parseInt(e.target.dataset.index);
-        if ((cart[i].quantity || 1) > 1) {
-          cart[i].quantity -= 1;
-        }
-        renderCart();
-      });
-    });
-
-    document.querySelectorAll(".delete").forEach(btn => {
-      btn.addEventListener("click", e => {
-        const i = parseInt(e.target.dataset.index);
-        cart.splice(i, 1);
-        renderCart();
-      });
-    });
-  }
-
+  // --------------------- PROCEED BUTTON ---------------------
   if (proceedButton) {
     proceedButton.addEventListener("click", () => {
       if (cart.length === 0) {
-        alert("🛒 Your cart is empty.");
+        alert("Your cart is empty!");
         return;
       }
-
-      const phoneNumber = "2348060886466"; 
-      let message = "Hello! I'd like to place an order:\n\n";
-      cart.forEach((item, index) => {
-        const quantity = item.quantity || 1;
-        message += `${index + 1}. ${item.name} - ₦${item.price.toFixed(2)} x ${quantity} = ₦${(item.price * quantity).toFixed(2)}\n`;
-      });
-      message += `\nTotal: ₦${totalDisplay.textContent}\n\nMy name is: [Enter your name here]`;
-      const encodedMessage = encodeURIComponent(message);
-      window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
+      window.location.href = "checkout.html"; // Redirect
     });
+  }
+
+  // --------------------- RENDER CART ---------------------
+  function renderCart() {
+    if (!cartContainer) return;
+
+    cartContainer.innerHTML = "";
+
+    if (cart.length === 0) {
+      cartContainer.innerHTML = `
+        <tr>
+          <td colspan="5" class="text-center text-muted py-3">
+            Your cart is empty <br><br>          
+            <a href="shop.html" class="btn btn-orange">
+              <i class="bi bi-cart"></i> Start Shopping
+            </a>
+          </td>
+        </tr>
+      `;
+      totalDisplay.textContent = "0.00";
+      updateCartCount();
+      if (promoMessageContainer) promoMessageContainer.style.display = "none";
+      return;
+    }
+
+    let total = 0;
+    let totalQuantity = 0;
+
+    cart.forEach((item, index) => {
+      const quantity = item.quantity || 1;
+      totalQuantity += quantity;
+      const itemTotal = item.price * quantity;
+      total += itemTotal;
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>
+          <div class="d-flex align-items-center">
+            <img src="${item.image}" alt="${item.name}" class="cart-img me-2">
+            <span>${item.name}</span>
+          </div>
+        </td>
+        <td>₦${item.price.toFixed(2)}</td>
+        <td>
+          <button class="btn btn-sm btn-secondary decrease" data-index="${index}">-</button>
+          <span class="mx-2">${quantity}</span>
+          <button class="btn btn-sm btn-secondary increase" data-index="${index}">+</button>
+        </td>
+        <td>₦${itemTotal.toFixed(2)}</td>
+        <td><button class="btn btn-sm btn-danger delete" data-index="${index}">Delete</button></td>
+      `;
+      cartContainer.appendChild(row);
+    });
+
+    // --------------------- APPLY PROMO ---------------------
+    let discount = 0;
+    let promoText = "";
+
+    // Promo only applies if quantity >= 20
+    if (totalQuantity >= 20) {
+      discount = total * 0.15;
+      promoText = "🎉 Promo Applied: 15% Off!";
+    }
+
+    const finalTotal = total - discount;
+    totalDisplay.textContent = finalTotal.toFixed(2);
+
+    // Create promo message container if not exist
+    if (!promoMessageContainer) {
+      promoMessageContainer = document.createElement("tr");
+      promoMessageContainer.id = "promo-message";
+      promoMessageContainer.innerHTML = `<td colspan="5" class="text-center text-success"></td>`;
+      cartContainer.insertBefore(promoMessageContainer, cartContainer.firstChild);
+    }
+
+    promoMessageContainer.querySelector("td").textContent = promoText;
+    promoMessageContainer.style.display = promoText ? "table-row" : "none";
+
+    updateCartCount();
+    attachEvents();
+  }
+
+  // --------------------- UPDATE CART COUNT ---------------------
+  function updateCartCount() {
+    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    if (cartCountElement) cartCountElement.textContent = totalItems;
+  }
+
+  // --------------------- BUTTON EVENTS ---------------------
+  function attachEvents() {
+    document.querySelectorAll(".increase").forEach(btn => {
+      btn.onclick = () => {
+        const i = parseInt(btn.dataset.index);
+        cart[i].quantity += 1;
+        saveAndRender();
+      };
+    });
+
+    document.querySelectorAll(".decrease").forEach(btn => {
+      btn.onclick = () => {
+        const i = parseInt(btn.dataset.index);
+        if (cart[i].quantity > 1) cart[i].quantity -= 1;
+        saveAndRender();
+      };
+    });
+
+    document.querySelectorAll(".delete").forEach(btn => {
+      btn.onclick = () => {
+        const i = parseInt(btn.dataset.index);
+        cart.splice(i, 1);
+        saveAndRender();
+      };
+    });
+  }
+
+  // --------------------- SAVE & RENDER ---------------------
+  function saveAndRender() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
   }
 
   renderCart();
 });
-
-// Global function to add product to cart
-// Function to add product to cart (renamed from addToCart to handleAddToCart)
-function handleAddToCart(name, price, image) {
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const existing = cart.find(item => item.name === name);
-
-  if (existing) {
-    existing.quantity = (existing.quantity || 1) + 1;
-  } else {
-    cart.push({ name, price, image, quantity: 1 });
-  }
-
-  // Save updated cart in localStorage
-  localStorage.setItem('cart', JSON.stringify(cart));
-
-  // Update cart count on the navbar
-  updateCartCount();
-
-  // Force a page reload to update the cart display
-  location.reload();  // This will reload the page and reflect the changes
-
-  // Optionally, alert the user
-  // alert(name + " added to cart!");
-}
-
-// Make it accessible globally if needed in inline HTML
-window.handleAddToCart = handleAddToCart;
-
-// Global remove function if needed
-function removeFromCart(name) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart = cart.filter(item => item.name !== name);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  location.reload(); // Reload to reflect changes
-}
-window.removeFromCart = removeFromCart;
-
-// Update cart count on page load
-window.onload = () => {
-  updateCartCount();
-};
-
-// Helper for scroll-to-top button
-function onscroll(el, listener) {
-  el.addEventListener("scroll", listener);
-}
-
-// Back to top button
-const backtotop = document.querySelector('.back-to-top');
-if (backtotop) {
-  const toggleBacktotop = () => {
-    if (window.scrollY > 100) {
-      backtotop.classList.add('active');
-    } else {
-      backtotop.classList.remove('active');
-    }
-  };
-  window.addEventListener('load', toggleBacktotop);
-  onscroll(document, toggleBacktotop);
-}
-

@@ -1,0 +1,12 @@
+# VS Code settings
+.vscode/
+
+# Python cache files
+__pycache__/
+
+# Root environment file
+.env
+
+# Ignore backend environment and nested Git repo
+backend/.env
+backend/.git

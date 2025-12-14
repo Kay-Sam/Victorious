@@ -1,48 +1,52 @@
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  const searchInput = document.getElementById('search-input');
-  const productList = document.getElementById('product-list');
-  const products = productList.getElementsByClassName('col-md-4');
-
-  searchInput.addEventListener('keyup', function() {
-    const searchText = this.value.toLowerCase();
-
-    for (let i = 0; i < products.length; i++) {
-      const productTitle = products[i].querySelector('.product-title').textContent.toLowerCase();
-      const productDesc = products[i].querySelector('p').textContent.toLowerCase();
-
-      if (productTitle.includes(searchText) || productDesc.includes(searchText)) {
-        products[i].style.display = '';
-      } else {
-        products[i].style.display = 'none';
-      }
-    }
-  });
-});
-
 document.addEventListener("DOMContentLoaded", () => {
-  // 🔍 SEARCH FUNCTIONALITY
   const searchInput = document.getElementById("search-input");
-  searchInput.addEventListener("keyup", () => {
+  const productCards = document.querySelectorAll(".col-md-4"); // each product card
+  let notFoundMessage;
+  let timeoutId;
+
+  searchInput.addEventListener("input", () => {
     const searchTerm = searchInput.value.toLowerCase();
-    const productCards = document.querySelectorAll(".product-title");
-    productCards.forEach((title) => {
-      const card = title.closest(".card");
-      if (title.textContent.toLowerCase().includes(searchTerm)) {
+    let found = false;
+
+    productCards.forEach((card) => {
+      const category = card.dataset.category
+        ? card.dataset.category.toLowerCase().replace(/-/g, ' ')
+        : "";
+
+      if (category.includes(searchTerm)) {
         card.style.display = "block";
+        found = true;
       } else {
         card.style.display = "none";
       }
     });
-  });
 
-  // 🖼 MODAL IMAGE VIEW
-  const modalImage = document.getElementById("modalImage");
-  const clickableImages = document.querySelectorAll(".clickable-img");
-  clickableImages.forEach((img) => {
-    img.addEventListener("click", () => {
-      modalImage.src = img.dataset.imgSrc || img.src;
-    });
+    // NO PRODUCTS FOUND MESSAGE
+    const container = document.querySelector(".container .row");
+
+    if (!found) {
+      if (!notFoundMessage) {
+        notFoundMessage = document.createElement("div");
+        notFoundMessage.id = "search-not-found";
+        notFoundMessage.className = "alert alert-warning text-center mt-3 w-100";
+        notFoundMessage.innerHTML = `<h5>No products found</h5>`;
+        container.parentNode.insertBefore(notFoundMessage, container.nextSibling);
+
+        // Remove message after 3 seconds
+        timeoutId = setTimeout(() => {
+          if (notFoundMessage) {
+            notFoundMessage.remove();
+            notFoundMessage = null;
+          }
+        }, 3000);
+      }
+    } else {
+      // If products are found, remove message immediately
+      if (notFoundMessage) {
+        clearTimeout(timeoutId);
+        notFoundMessage.remove();
+        notFoundMessage = null;
+      }
+    }
   });
 });

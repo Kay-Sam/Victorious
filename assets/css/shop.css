@@ -16,6 +16,17 @@
     font-weight: bold;
     color: var(--main-orange) !important;
   }
+  /* Default logo size (desktop) */
+.navbar-brand img {
+  height: 50px;
+}
+
+/* Mobile screens only */
+@media (max-width: 991.98px) { /* Bootstrap lg breakpoint */
+  .navbar-brand img {
+    height: 35px; /* smaller logo for mobile */
+  }
+}
 
   .nav-link {
     color: #444 !important;

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payment Successful</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Real Favicon -->
+<link rel="icon" type="image/png" href="assets/favicon.png">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+body {
+  background: linear-gradient(135deg, #f8f9fa, #eef2f7);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.success-box {
+  max-width: 520px;
+  margin: 90px auto;
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(0,0,0,.08);
+  text-align: center;
+  position: relative;
+}
+
+.success-icon {
+  width: 90px;
+  height: 90px;
+  background: #e6f7ee;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -85px auto 20px;
+  font-size: 42px;
+  color: #28a745;
+}
+
+h3 {
+  font-weight: 600;
+}
+
+.success-box p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.alert {
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.alert i {
+  margin-right: 6px;
+}
+
+.btn-warning {
+  padding: 12px 26px;
+  border-radius: 30px;
+  font-weight: 500;
+  box-shadow: 0 6px 15px rgba(255,193,7,.35);
+  transition: all .3s ease;
+}
+
+.btn-warning:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255,193,7,.45);
+}
+</style>
+</head>
+
+<body>
+
+<div class="success-box">
+
+  <!-- Font Awesome Success Icon -->
+  <div class="success-icon">
+    <i class="fas fa-check"></i>
+  </div>
+
+  <h3 class="mt-2">Payment Successful</h3>
+  <p class="text-muted">Thank you for your order.</p>
+
+  <p>
+    Your payment has been received successfully.<br>
+    Our team will contact you shortly via <strong>WhatsApp</strong> to arrange delivery.
+  </p>
+
+  <div class="alert alert-info mt-4">
+    <i class="fas fa-truck"></i> Delivery is within <strong>Ibadan only</strong><br>
+    <i class="fas fa-money-bill-wave"></i> Delivery fee is paid on delivery
+  </div>
+
+  <a href="shop.html" class="btn btn-warning mt-4">
+    Continue Shopping <i class="fas fa-arrow-right ms-2"></i>
+  </a>
+</div>
+
+</body>
+</html>
