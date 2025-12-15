@@ -5,7 +5,7 @@
 <title>Payment Successful</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Real Favicon -->
+<!-- Favicon -->
 <link rel="icon" type="image/png" href="assets/favicon.png">
 
 <!-- Bootstrap CSS -->
@@ -44,24 +44,10 @@ body {
   color: #28a745;
 }
 
-h3 {
-  font-weight: 600;
-}
-
-.success-box p {
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-.alert {
-  border-radius: 12px;
-  font-size: 14px;
-}
-
-.alert i {
-  margin-right: 6px;
-}
-
+h3 { font-weight: 600; }
+.success-box p { font-size: 15px; line-height: 1.6; }
+.alert { border-radius: 12px; font-size: 14px; }
+.alert i { margin-right: 6px; }
 .btn-warning {
   padding: 12px 26px;
   border-radius: 30px;
@@ -69,7 +55,6 @@ h3 {
   box-shadow: 0 6px 15px rgba(255,193,7,.35);
   transition: all .3s ease;
 }
-
 .btn-warning:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(255,193,7,.45);
@@ -91,15 +76,19 @@ h3 {
 
   <p>
     Your payment has been received successfully.<br>
-    Our team will contact you shortly via <strong>WhatsApp</strong> to arrange delivery.
+    Please confirm your order via WhatsApp by clicking the button below.
   </p>
+
+  <a href="{{ wa_link }}" class="btn btn-success mt-3" target="_blank">
+    Confirm on WhatsApp <i class="fab fa-whatsapp ms-2"></i>
+  </a>
 
   <div class="alert alert-info mt-4">
     <i class="fas fa-truck"></i> Delivery is within <strong>Ibadan only</strong><br>
     <i class="fas fa-money-bill-wave"></i> Delivery fee is paid on delivery
   </div>
 
-  <a href="shop.html" class="btn btn-warning mt-4">
+  <a href="shop.html" class="btn btn-warning mt-3">
     Continue Shopping <i class="fas fa-arrow-right ms-2"></i>
   </a>
 </div>

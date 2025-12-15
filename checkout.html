@@ -174,10 +174,15 @@ document.getElementById("pay-btn").addEventListener("click", async () => {
       email: data.email,
       amount: data.amount,
       ref: data.reference,
-      callback: function () {
+    callback: function (response) {
+        const phone = document.getElementById("whatsapp").value.trim();
+
+        // Remove cart items
         localStorage.removeItem("cart");
-        window.location.href = "payment-success.html";
-      }
+
+        // Redirect to backend route with reference and phone
+        window.location.href = `/payment-success/${response.reference}/${phone}`;
+    }
     }).openIframe();
 
   } catch (err) {
