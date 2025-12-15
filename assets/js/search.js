@@ -1,19 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("search-input");
-  const productCards = document.querySelectorAll(".col-md-4"); // each product card
+  const productCards = document.querySelectorAll(".col-md-4");
   let notFoundMessage;
   let timeoutId;
 
   searchInput.addEventListener("input", () => {
-    const searchTerm = searchInput.value.toLowerCase();
+    const searchTerm = searchInput.value.toLowerCase().trim();
     let found = false;
 
-    productCards.forEach((card) => {
+    productCards.forEach(card => {
+      // 🔍 Collect searchable text
       const category = card.dataset.category
-        ? card.dataset.category.toLowerCase().replace(/-/g, ' ')
+        ? card.dataset.category.toLowerCase()
         : "";
 
-      if (category.includes(searchTerm)) {
+      const title = card.querySelector(".product-title")?.innerText.toLowerCase() || "";
+      const description = card.querySelector("p")?.innerText.toLowerCase() || "";
+
+      const searchableText = `${title} ${category} ${description}`;
+
+      if (searchableText.includes(searchTerm)) {
         card.style.display = "block";
         found = true;
       } else {
@@ -21,27 +27,31 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // NO PRODUCTS FOUND MESSAGE
     const container = document.querySelector(".container .row");
 
-    if (!found) {
+    // ❌ No product found
+    if (!found && searchTerm !== "") {
       if (!notFoundMessage) {
         notFoundMessage = document.createElement("div");
         notFoundMessage.id = "search-not-found";
-        notFoundMessage.className = "alert alert-warning text-center mt-3 w-100";
-        notFoundMessage.innerHTML = `<h5>No products found</h5>`;
-        container.parentNode.insertBefore(notFoundMessage, container.nextSibling);
+        notFoundMessage.className =
+          "alert alert-warning text-center mt-3 w-100";
+        notFoundMessage.innerHTML = `
+          <strong>No products found</strong><br>
+          Try searching by name or keyword.
+        `;
 
-        // Remove message after 3 seconds
+        container.parentNode.insertBefore(
+          notFoundMessage,
+          container.nextSibling
+        );
+
         timeoutId = setTimeout(() => {
-          if (notFoundMessage) {
-            notFoundMessage.remove();
-            notFoundMessage = null;
-          }
+          notFoundMessage?.remove();
+          notFoundMessage = null;
         }, 3000);
       }
     } else {
-      // If products are found, remove message immediately
       if (notFoundMessage) {
         clearTimeout(timeoutId);
         notFoundMessage.remove();
