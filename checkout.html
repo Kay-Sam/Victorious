@@ -179,8 +179,10 @@ callback: function (response) {
 
   localStorage.removeItem("cart");
 
-  // Redirect to static frontend page
-  window.location.href = `/payment-success.html?ref=${response.reference}&phone=${phone}`;
+  // Redirect to backend page
+window.location.href =
+  "https://victoriouschips.onrender.com/payment-success/" +
+  response.reference + "/" + phone;
 }
     }).openIframe();
 
