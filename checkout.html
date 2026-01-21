@@ -154,6 +154,9 @@ document.getElementById("pay-btn").addEventListener("click", async () => {
   const email = document.getElementById("email").value.trim();
 
   if (!name || !phone || !address || !email) return alert("Fill all delivery details.");
+    // ✅ UX feedback
+  payBtn.innerHTML = "Connecting to payment...";
+  payBtn.disabled = true;
 
   try {
     const res = await fetch("https://victoriouschips.onrender.com/create-payment", {
@@ -183,7 +186,11 @@ callback: function (response) {
 window.location.href =
   "https://victoriouschips.onrender.com/payment-success/" +
   response.reference + "/" + phone;
-}
+}, onClose: function () {
+        // User closed payment modal
+        payBtn.innerHTML = "Pay Now";
+        payBtn.disabled = false;
+      }
     }).openIframe();
 
   } catch (err) {
