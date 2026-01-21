@@ -148,12 +148,20 @@ renderCheckout();
 
 // Pay button
 document.getElementById("pay-btn").addEventListener("click", async () => {
+  const payBtn = document.getElementById("pay-btn");
   const name = document.getElementById("fullName").value.trim();
   const phone = document.getElementById("whatsapp").value.trim();
   const address = document.getElementById("address").value.trim();
   const email = document.getElementById("email").value.trim();
 
-  if (!name || !phone || !address || !email) return alert("Fill all delivery details.");
+  if (!name || !phone || !address || !email) {
+    alert("Fill all delivery details.");
+    return;
+  }
+
+  // ✅ UX feedback: show connecting status & disable button
+  payBtn.innerHTML = "Connecting to payment...";
+  payBtn.disabled = true;
 
   try {
     const res = await fetch("https://victoriouschips.onrender.com/create-payment", {
@@ -163,34 +171,46 @@ document.getElementById("pay-btn").addEventListener("click", async () => {
     });
 
     const data = await res.json();
-    if (data.error) return alert(data.error);
+    if (data.error) throw new Error(data.error);
 
     // Update checkout display from backend response
     if (data.promo) document.getElementById("checkout-promo").innerText = `🎉 ${data.promo}`;
     document.getElementById("checkout-total").innerText = (data.amount / 100).toLocaleString();
 
+    // Safety check: Paystack script must be loaded
+    if (typeof PaystackPop === "undefined") {
+      throw new Error("Paystack payment service not loaded. Refresh the page.");
+    }
+
+    // Setup Paystack payment
     PaystackPop.setup({
       key: data.public_key,
       email: data.email,
       amount: data.amount,
       ref: data.reference,
-callback: function (response) {
-  const phone = document.getElementById("whatsapp").value.trim();
-
-  localStorage.removeItem("cart");
-
-  // Redirect to backend page
-window.location.href =
-  "https://victoriouschips.onrender.com/payment-success/" +
-  response.reference + "/" + phone;
-}
+      callback: function(response) {
+        localStorage.removeItem("cart");
+        window.location.href =
+          "https://victoriouschips.onrender.com/payment-success/" +
+          response.reference + "/" + phone;
+      },
+      onClose: function() {
+        // Reset button if user closes modal
+        payBtn.innerHTML = "Pay Now <i class='bi bi-shield-check ms-2'></i>";
+        payBtn.disabled = false;
+      }
     }).openIframe();
 
   } catch (err) {
     console.error(err);
-    alert("Payment service unavailable. Try again.");
+    alert(err.message || "Payment service unavailable. Try again.");
+
+    // Reset button on error
+    payBtn.innerHTML = "Pay Now <i class='bi bi-shield-check ms-2'></i>";
+    payBtn.disabled = false;
   }
 });
+
 </script>
 
 <a href="https://wa.me/2348060886466?text=Hello%20there!%0AI'm%20interested%20in%20your%20products.%0ACan%20you%20send%20me%20the%20price%20list%3F%20
