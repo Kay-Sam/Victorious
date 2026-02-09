@@ -68,7 +68,7 @@ if (payBtn) {
     payBtn.disabled = true;
 
     try {
-      const res = await fetch("/create-payment", {
+      const res = await fetch("/payment/create-payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cart, customer: { name, phone, address, email } })
