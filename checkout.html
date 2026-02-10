@@ -39,7 +39,10 @@
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
       </ul>
-
+      <form class="d-flex" role="search" onsubmit="return false;">
+        <input id="search-input" class="form-control me-2" type="search" placeholder="Search products...">
+        <button class="btn btn-orange" type="submit"><i class="bi bi-search"></i></button>
+      </form>
     </div>
   </div>
 </nav>
@@ -83,23 +86,118 @@
         <div id="checkout-promo" class="text-success mb-2"></div>
         <h4>Total: ₦<span id="checkout-total">0.00</span></h4>
 <div class="d-grid gap-2 mt-3">
-  <button id="pay-online-btn" class="btn btn-orange w-100">
+  <button id="pay-btn" class="btn btn-orange w-100">
     Pay Online <i class="bi bi-shield-check ms-2"></i>
   </button>
   <button id="whatsapp-btn" class="btn btn-success w-100">
     Checkout via WhatsApp <i class="bi bi-whatsapp ms-2"></i>
   </button>
 </div>
-
       </div>
     </div>
   </div>
 </div>
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
-
-<script src="assets/js/cart.js"></script>
 <script src="assets/js/checkout.js"></script>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Update cart badge
+function updateCartCount() {
+  const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+  document.getElementById("cart-count").textContent = totalItems;
+}
+updateCartCount();
+
+// Calculate local promo for display
+function calculateLocalPromo(cart) {
+  let totalQty = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+  let promoText = "";
+  let discount = 0;
+
+  if (totalQty >= 30) {
+    promoText = "🎉 20% Festive Promo";
+    discount = 0.2;
+  } else if (totalQty >= 20) {
+    promoText = "🎉 15% Festive Promo";
+    discount = 0.15;
+  }
+
+  let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  let discountedTotal = total - total * discount;
+
+  return { total: discountedTotal, promoText };
+}
+
+// Render checkout
+function renderCheckout() {
+  let container = document.getElementById("checkout-items");
+  container.innerHTML = "";
+
+  cart.forEach(item => {
+    container.innerHTML += `
+      <div class="d-flex justify-content-between mb-2">
+        <div>${item.name} (x${item.quantity})</div>
+        <div>₦${(item.price * item.quantity).toLocaleString()}</div>
+      </div>
+    `;
+  });
+
+  const { total, promoText } = calculateLocalPromo(cart);
+  document.getElementById("checkout-total").textContent = total.toLocaleString();
+  document.getElementById("checkout-promo").textContent = promoText;
+}
+
+renderCheckout();
+
+// Pay button
+document.getElementById("pay-btn").addEventListener("click", async () => {
+  const name = document.getElementById("fullName").value.trim();
+  const phone = document.getElementById("whatsapp").value.trim();
+  const address = document.getElementById("address").value.trim();
+  const email = document.getElementById("email").value.trim();
+
+  if (!name || !phone || !address || !email) return alert("Fill all delivery details.");
+
+  try {
+    const res = await fetch("https://victoriouschips.onrender.com/create-payment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ cart, customer: { name, phone, address, email } })
+    });
+
+    const data = await res.json();
+    if (data.error) return alert(data.error);
+
+    // Update checkout display from backend response
+    if (data.promo) document.getElementById("checkout-promo").innerText = `🎉 ${data.promo}`;
+    document.getElementById("checkout-total").innerText = (data.amount / 100).toLocaleString();
+
+    PaystackPop.setup({
+      key: data.public_key,
+      email: data.email,
+      amount: data.amount,
+      ref: data.reference,
+callback: function (response) {
+  const phone = document.getElementById("whatsapp").value.trim();
+
+  localStorage.removeItem("cart");
+
+  // Redirect to backend page
+window.location.href =
+  "https://victoriouschips.onrender.com/payment-success/" +
+  response.reference + "/" + phone;
+}
+    }).openIframe();
+
+  } catch (err) {
+    console.error(err);
+    alert("Payment service unavailable. Try again.");
+  }
+});
+</script>
 
 <a href="https://wa.me/2348060886466?text=Hello%20there!%0AI'm%20interested%20in%20your%20products.%0ACan%20you%20send%20me%20the%20price%20list%3F%20
 " class="floating" target="_blank">

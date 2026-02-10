@@ -85,15 +85,21 @@
         <hr>
         <div id="checkout-promo" class="text-success mb-2"></div>
         <h4>Total: ₦<span id="checkout-total">0.00</span></h4>
-        <button id="pay-btn" class="btn btn-orange w-100 mt-3">
-          Pay Now <i class="bi bi-shield-check ms-2"></i>
-        </button>
+<div class="d-grid gap-2 mt-3">
+  <button id="pay-online-btn" class="btn btn-orange w-100">
+    Pay Online <i class="bi bi-shield-check ms-2"></i>
+  </button>
+  <button id="whatsapp-btn" class="btn btn-success w-100">
+    Checkout via WhatsApp <i class="bi bi-whatsapp ms-2"></i>
+  </button>
+</div>
       </div>
     </div>
   </div>
 </div>
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="assets/js/checkout.js"></script>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
