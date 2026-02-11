@@ -83,6 +83,9 @@ if (payBtn) {
         return;
         }
     try {
+  // 🔵 Show loading state
+  payBtn.disabled = true;
+  payBtn.innerHTML = "Connecting to payment... <span class='spinner-border spinner-border-sm'></span>";
       const res = await fetch("https://victoriouschips.onrender.com/create-payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -110,6 +113,9 @@ if (payBtn) {
     } catch (err) {
       console.error(err);
       alert("Payment service unavailable. Try again.");
+            // 🔴 Restore button
+    payBtn.disabled = false;
+    payBtn.innerHTML = "Pay Online";
     }
   });
 }
