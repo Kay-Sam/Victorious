@@ -82,55 +82,48 @@ if (payBtn) {
         alert("Please enter a valid WhatsApp number.");
         return;
         }
-   try {
-    // 🔵 Show loading state
-    payBtn.disabled = true;
-    payBtn.innerHTML = "Connecting to payment... <span class='spinner-border spinner-border-sm'></span>";
+    try {
+  // 🔵 Show loading state
+  payBtn.disabled = true;
+  payBtn.innerHTML = "Connecting to payment... <span class='spinner-border spinner-border-sm'></span>";
+      const res = await fetch("https://victoriouschips.onrender.com/create-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          cart,
+          customer: { name, phone, address, email }
+        })
+      });
 
-    const res = await fetch("/create-payment", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        cart,
-        customer: { name, phone, address, email }
-      })
-    });
+      const data = await res.json();
+      if (data.error) return alert(data.error);
 
-    const data = await res.json();
-    if (data.error) {
-      alert(data.error);
-      // 🔴 Restore button if fetch fails
-      payBtn.disabled = false;
-      payBtn.innerHTML = "Pay Online";
-      return;
-    }
-
-    PaystackPop.setup({
-      key: data.public_key,
-      email: data.email,
-      amount: data.amount,
-      ref: data.reference,
-      callback: function(response) {
-        localStorage.removeItem("cart");
-        window.location.href = `/payment-success/${response.reference}/${phone}`;
-      },
+      PaystackPop.setup({
+        key: data.public_key,
+        email: data.email,
+        amount: data.amount,
+        ref: data.reference,
+        callback: function (response) {
+          localStorage.removeItem("cart");
+          window.location.href =
+            `https://victoriouschips.onrender.com/payment-success/${response.reference}/${phone}`;
+        },
       onClose: function() {
         // 🔴 Restore button if user closes payment popup
         payBtn.disabled = false;
         payBtn.innerHTML = "Pay Online";
       }
-    }).openIframe();
+      }).openIframe();
 
-  } catch (err) {
-    console.error(err);
-    alert("Payment service unavailable. Try again.");
-    // 🔴 Restore button on network error
+    } catch (err) {
+      console.error(err);
+      alert("Payment service unavailable. Try again.");
+            // 🔴 Restore button
     payBtn.disabled = false;
     payBtn.innerHTML = "Pay Online";
-  }
-});
+    }
+  });
 }
-
 
 // ------------------ WHATSAPP CHECKOUT ------------------
 const waBtn = document.getElementById("whatsapp-btn");
