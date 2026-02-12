@@ -15,5 +15,9 @@
     <loc>https://victoriouschips.com.ng/checkout.html</loc>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://victoriouschips.com.ng/cart.html</loc>
+    <priority>0.8</priority>
+  </url>
 
 </urlset>
