@@ -402,7 +402,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   width: 100%;
   height: 100%;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 0;
   position: relative;
@@ -411,6 +411,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-side {
   flex: 1;
+  
   z-index: 3;
   animation: slideUp 1.2s ease-out forwards;
 }
@@ -512,8 +513,6 @@ h1, h2, h3, h4, h5, h6 {
     flex: none;
     width: 100%;
   }
-
-
 
   .text-side p {
     font-size: 16px;
