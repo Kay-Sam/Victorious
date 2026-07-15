@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop - Victorious Chips</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"/>
+  <link rel="stylesheet" href="assets/css/shop.css">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top shadow-sm px-4 py-1 bg-white">
+    <div class="container-fluid">
+      <!-- Logo -->
+      <a href="index.html" class="navbar-brand">
+        <img src="assets/img/logo.png" alt="Logo" height="50">
+      </a>
+  
+      <!-- Cart Icon and Toggler (always shown but styled for each screen) -->
+      <div class="d-flex align-items-center order-lg-2 ms-auto" style="margin-right: 15px;"> <!-- Added space here -->
+        <!-- Cart -->
+        <a class="nav-link position-relative me-2" href="cart.html" style="margin-left: 10px; margin-right: 10px;"> <!-- Add space around icon -->
+          <i class="bi bi-cart4 fs-4"></i>
+          <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">0</span>
+        </a>
+        
+        <!-- Hamburger -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+  
+      <!-- Collapsible Nav -->
+      <div class="collapse navbar-collapse justify-content-end order-lg-1" id="navbarNavDropdown">
+        <ul class="navbar-nav align-items-center me-3">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shop.html">Shop</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="https://victoriouschips.onrender.com/my-orders">My Orders</a></li>
+        </ul>
+    <form class="d-flex" role="search" onsubmit="return false;">
+      <input id="search-input" class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search">
+      <button class="btn btn-orange" type="submit"><i class="bi bi-search"></i></button>
+    </form>
+
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Main Content -->
+  <div class="container py-5 mt-5">
+    <h2 class="mb-4 text-center">Our Delicious Products</h2>
+      <h3 class="mt-5 mb-3 text-orange">Akara Chips</h3>
+    <div class="row g-4" id="product-list">
+
+      <!-- Product 1 -->
+      <div class="col-md-4" data-category="akara chips">
+        <div class="product-card">
+          <img src="assets/img/product1.jpg" alt="Jollof Style" class="product-img">
+          <div class="product-body">
+            <div class="product-title">Jollof Style</div>
+            <div class="star-rating mb-2">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-half"></i>
+            </div>
+            <div class="product-price mb-2">₦1000.00</div>
+            <p>Looking for that crunchy chips to brighten your day?</p>
+            <button class="btn btn-orange w-100" onclick="addToCart('Akara Chips Jollof Style', 1000, 'assets/img/product1.jpg')">
+              <i class="bi bi-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="col-md-4" data-category="akara chips">
+        <div class="product-card">
+          <img src="assets/img/product2.jpeg" alt="Flat Style" class="product-img">
+          <div class="product-body">
+            <div class="product-title">Flat Style</div>
+            <div class="star-rating mb-2">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-half"></i>
+            </div>
+            <div class="product-price mb-2">₦1000.00</div>
+            <p>Taking Victorious' Akara Chips with Pap is worth trying.</p>
+            <button class="btn btn-orange w-100" onclick="addToCart('Akara Chips Flat Style', 1000, 'assets/img/product2.jpeg')">
+              <i class="bi bi-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="col-md-4" data-category="akara chips">
+        <div class="product-card">
+          <img src="assets/img/product3.jpg" alt="Noodles Style" class="product-img">
+          <div class="product-body">
+            <div class="product-title">Noodles Style</div>
+            <div class="star-rating mb-2">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-half"></i>
+            </div>
+            <div class="product-price mb-2">₦1000.00</div>
+            <p>Feel the crispiness. The taste that makes you want more.</p>
+            <button class="btn btn-orange w-100" onclick="addToCart('Akara Chips Noodles Style', 1000, 'assets/img/product3.jpg')">
+              <i class="bi bi-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+<!-- Chin Chin -->
+  <h3 class="mt-5 mb-3 text-orange">Chin Chin</h3>
+  <div class="row g-4" id="chin-chin-products">
+    <!-- Chin Chin Classic -->
+    <div class="col-md-4">
+      <div class="product-card">
+        <img src="assets/img/chinchin1.jpg" alt="Chin Chin Classic" class="product-img">
+        <div class="product-body">
+          <div class="product-title">Chin Chin Bottle Pack</div>
+          <div class="star-rating mb-2">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-half"></i>
+          </div>
+          <div class="product-price mb-2">₦2000.00</div>
+          <p>Crunchy, neatly packed in a resealable bottle for freshness and easy snacking on the go. </p>
+          <button class="btn btn-orange w-100" onclick="addToCart('Chin Chin Bottle Pack', 2000, 'assets/img/chinchin1.jpg')">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+ 
+
+        <div class="col-md-4">
+      <div class="product-card">
+        <img src="assets/img/chinchin3.jpg" alt="Chin Chin Classic" class="product-img">
+        <div class="product-body">
+          <div class="product-title">Chin Chin Classic</div>
+          <div class="star-rating mb-2">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-half"></i>
+          </div>
+          <div class="product-price mb-2">₦1000.00</div>
+          <p>Crispy, sweet, and made with a simple traditional recipe you’ll love every day.
+          </p>
+          <button class="btn btn-orange w-100" onclick="addToCart('Chin Chin Classic', 1000, 'assets/img/chinchin1.jpg')">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chin Chin Deluxe -->
+    <div class="col-md-4">
+      <div class="product-card">
+        <img src="assets/img/chinchin2.jpg" alt="Chin Chin Deluxe" class="product-img">
+        <div class="product-body">
+          <div class="product-title">Chin Chin Deluxe</div>
+          <div class="star-rating mb-2">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star"></i>
+          </div>
+          <div class="product-price mb-2">₦11000.00</div>
+          <p>A richer taste for true Chin Chin lovers—crunchy outside, soft inside!</p>
+          <button class="btn btn-orange w-100" onclick="addToCart('Chin Chin Deluxe', 11000, 'assets/img/chinchin2.jpg')">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Plantain Chips -->
+   <h3 class="mt-5 mb-3 text-orange">Plantain Chips</h3>
+  <div class="row g-4" id="chin-chin-products">
+    <div class="col-md-4">
+      <div class="product-card">
+        <img src="assets/img/plantain1.jpg" alt="Chin Chin Classic" class="product-img">
+        <div class="product-body">
+          <div class="product-title">Plantain Chips Bottle Pack</div>
+          <div class="star-rating mb-2">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-half"></i>
+          </div>
+          <div class="product-price mb-2">₦1000.00</div>
+          <p>Crispy plantain chips sealed in a stylish, for sharing or snacking anywhere!</p>
+          <button class="btn btn-orange w-100" onclick="addToCart('Plantain Chips Bottle Pack', 1000, 'assets/img/plantain1.jpg')">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+ 
+
+        <div class="col-md-4">
+      <div class="product-card">
+        <img src="assets/img/plantain3.jpg" alt="Chin Chin Classic" class="product-img">
+        <div class="product-body">
+          <div class="product-title">Plantain Chips Classic</div>
+          <div class="star-rating mb-2">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-half"></i>
+          </div>
+          <div class="product-price mb-2">₦1000.00</div>
+          <p>Lightly salted, thinly sliced plantains fried to a perfect golden crunch and always fresh.
+          </p>
+          <button class="btn btn-orange w-100" onclick="addToCart('Plantain Chips Classic', 1000, 'assets/img/plantain3.jpg')">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div> 
+
+    <!-- Plantain Deluxe -->
+    <div class="col-md-4">
+      <div class="product-card">
+        <img src="assets/img/plantain2.jpg" alt="Plantain Deluxe" class="product-img">
+        <div class="product-body">
+          <div class="product-title">Sweet Bliss Plantain Chips</div>
+          <div class="star-rating mb-2">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star"></i>
+          </div>
+          <div class="product-price mb-2">₦1000.00</div>
+          <p>Naturally sweet, thinly sliced plantains that melt in your mouth with every bite.</p>
+          <button class="btn btn-orange w-100" onclick="addToCart('Sweet Bliss Plantain Chips', 1000, 'assets/img/plantain2.jpg')">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+  
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>Victorious Chips</h3>
+              <p>
+                Orita Odan Eleekan <br>
+                Olodo, Ibadan<br><br>
+                <i class="bi bi-phone"></i><a href="tel:+2348060886466"> 08060886466</a> <br>
+                 <i class="bi bi-envelope"></i><a href="mailto:vicaderonkedada@gmail.com"> vicaderonkedada@gmail.com </a><br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="https://www.facebook.com/profile.php?id=100088804238982" class="facebook" target="_blank"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.instagram.com/victoriousakarachips?igsh=NzF1bGdqYTZkOWow" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
+                <a href="https://api.whatsapp.com/send?phone=2348060886466" class="whatsapp" target="_blank"><i class="bi bi-whatsapp"></i></a>
+              
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="index.html">Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#products">Products</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="shop.html">Shop</a></li>
+              
+            </ul>
+          </div>
+  
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Working Hours</h4>
+            <div class="footer-info footer-open-hour">
+              <div class="wow fadeInUp" data-wow-delay="0.4s">
+                   <p>Monday - Saturday: 9:00 AM - 5:00 PM </p>
+             
+                   <div>
+                        <p>Sunday: Closed</p>
+                   </div>
+              </div>
+         </div>
+          </div>
+  
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Our Newsletter</h4>
+            <p> Get exclusive offers and the latest Akara chip styles!</p>
+            <!-- <form name="contact" method="POST" data-netlify="true"> -->
+            <form name="contact" method="POST" action="https://formsubmit.co/vicaderonkedada@gmail.com">
+              <input type="email" name="emailfornewsletter"><input type="submit" value="Subscribe">
+            </form>
+  
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  
+    <div class="container">
+      <div class="copyright">
+      <p>&copy; Copyright <script>document.write(new Date ().getFullYear())</script> Victorious Akara Chips. All rights reserved.</p>
+      </div>
+  
+    </div>
+  </footer><!-- End Footer -->
+  <!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<a href="https://wa.me/2348060886466?text=Hello%20there!%0AI'm%20interested%20in%20your%20service.%0ACan%20you%20send%20me%20the%20price%20list%3F%20" class="floating" target="_blank">
+	<i class="bi bi-whatsapp float-button"></i>
+</a>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+  <script src="assets/js/shop.js"></script>
+  <script src="assets/js/search.js"></script>
+
+
+</body>
+</html>
