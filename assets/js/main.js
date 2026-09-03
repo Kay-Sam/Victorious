@@ -95,7 +95,9 @@
   let backtotop = select('.back-to-top')
   if (backtotop) {
     const toggleBacktotop = () => {
-      if (window.scrollY > 100) {
+      const footer = select('#footer')
+      const footerVisible = footer && window.scrollY + window.innerHeight >= footer.offsetTop
+      if (window.scrollY > 100 && !footerVisible) {
         backtotop.classList.add('active')
       } else {
         backtotop.classList.remove('active')
@@ -297,10 +299,14 @@ window.addEventListener('scroll', function () {
 window.addEventListener('scroll', function () {
   const floatBtn = document.querySelector('.floating');
   const aboutSection = document.querySelector('.about');
+  const footer = document.getElementById('footer');
+
+  if (!floatBtn || !aboutSection || !footer) return;
 
   const aboutTop = aboutSection.offsetTop;
+  const footerVisible = window.scrollY + window.innerHeight >= footer.offsetTop;
 
-  if (window.scrollY >= aboutTop - 300) {
+  if (window.scrollY >= aboutTop - 300 && !footerVisible) {
     floatBtn.classList.add('show');
   } else {
     floatBtn.classList.remove('show');

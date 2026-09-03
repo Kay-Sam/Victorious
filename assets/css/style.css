@@ -1318,9 +1318,16 @@ reservation
   color: #FFF;
   border-radius: 50px;
   text-align: center;
-  font-size: 25px;
+  font-size: 24px;
   z-index: 100;
   display: none; /* Initially hidden */
+  animation: whatsapp-shake 0.8s ease-in-out 5s infinite;
+}
+
+@keyframes whatsapp-shake {
+  0%, 100% { transform: rotate(0deg); }
+  20%, 60% { transform: rotate(-12deg); }
+  40%, 80% { transform: rotate(12deg); }
 }
 
 .floating.show {

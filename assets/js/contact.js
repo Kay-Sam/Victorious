@@ -1,3 +1,8 @@
+const deliveryDateInput = document.getElementById("delivery-date");
+const today = new Date();
+const todayString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+deliveryDateInput.min = todayString;
+
 document.getElementById("form-submit").addEventListener("click", function() {
     // Get all input values
     const name = document.getElementById("name").value.trim();
@@ -12,6 +17,11 @@ document.getElementById("form-submit").addEventListener("click", function() {
     // Simple validation
     if(!name || !phone || !quantity || !deliveryDate || !type || !location){
         alert("Please fill all required fields!");
+        return;
+    }
+
+    if(deliveryDate < todayString){
+        alert("Please select today or a future delivery date.");
         return;
     }
 
